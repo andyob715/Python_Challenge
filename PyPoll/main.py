@@ -1,50 +1,57 @@
+# This will allow us to create file paths across operating systems
 import os
+# Module for reading CSV files
 import csv
 
-file_to_load = os.path.join("Resources", "election_data.csv")
+csvpath = os.path.join('Resources', 'election_data.csv')
 
-# # new lists
+# Create some lists
+voterid = []
+County = []
+Candidate = []
+#Reading using CSV module
 
-# voter_id = []
-# voter_county = []
-# voter_candidate = []
+with open(csvpath) as csvfile:
 
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile)
 
-# Open and read csv
-with open(file_to_load) as poll_data:
-    csv_reader = csv.reader(poll_data, delimiter=",")
+    print(csvreader)
 
-    # Read the header row first (skip this part if there is no header)
-    csv_header = next(csv_reader)
-    print(f"Header: {csv_header}")
-
-#   * A complete list of candidates who received votes
+    # Read the header row first (skip this step if there is now header)
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
 #   Need to have a list of candidate values
-
-    candidate = []
-    for row in csv_reader:
-        candidate.append(csv_reader[2])
-
-    print(candidate)
+    first_row = next(csvreader)
+    
+    for row in csvreader:
+            Candidate.append(row[2])
+    
+    Total_Votes=len(Candidate)
+    
+    print(Total_Votes)
 
 #   * The percentage of votes each candidate won
+# I need to find a way to take each individual candidate and count up how many times their name appears on the list and divide that by Total_VOtes
+# How do I do this for each candidate, list comprehension? sum if? how do i cycle through each individual candidate??
 
 #   * The total number of votes each candidate won
 
-#   * The winner of the election based on popular vote.
 
-# * As an example, your analysis should look similar to the one below:
+# results = (f"Election Results\n"
+#     f"---------------------\n"
+#     f"Total Votes: {Total_Votes} \n"
+#     f"---------------------\n"
+#     f"Print each person that got vote sin a list with percentage and total number\n"
+#     f"---------------------\n"
+#     f"Total Votes: \n")
+   
+# print(results)
 
-#   ```text
-#   Election Results
-#   -------------------------
-#   Total Votes: 3521001
-#   -------------------------
-#   Khan: 63.000% (2218231)
-#   Correy: 20.000% (704200)
-#   Li: 14.000% (492940)
-#   O'Tooley: 3.000% (105630)
-#   -------------------------
-#   Winner: Khan
-#   -------------------------
-#   ```
+ # Specify the file to write to
+#output_path = os.path.join("Resources", "pollresults.txt")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+#with open(output_path, 'w') as txtfile:
+
+ #   txtfile.write(results)      

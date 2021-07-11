@@ -68,4 +68,4 @@ output_path = os.path.join("Resources", "financialsummary.txt")
 # Open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w') as txtfile:
 
-    txtfile.write(results)
+    txtfile.write(results)      
