@@ -42,20 +42,16 @@ with open(csvpath) as csvfile:
         first_value = int(row[1])
         change_list.append(net_change)
         month_change+=[row[0]]
-    # print(month_change)
-    # print(change_list)
+
     
     max_increase = max(change_list)
     min_increase = min(change_list)
 
     index_change = (change_list.index(max_increase))
     min_index_change = (change_list.index(min_increase))
-    average = (change_list)/len(change_list)
-    # print(month_change[min_index_change])
-    # print(f"Greatest Change {month_change[index_change]} - {max_increase}")
+    average = sum(change_list)/len(change_list)
 
 
-    # print(max_increase)
     results = (f"Financial Analysis\n"
     f"---------------------\n"
     f"Total Months in file: {months_count}\n"
@@ -65,3 +61,11 @@ with open(csvpath) as csvfile:
     f"Greatest Descrease in Profits {month_change[min_index_change]}: {min_increase} ")
     
     print(results)
+
+ # Specify the file to write to
+output_path = os.path.join("Resources", "financialsummary.txt")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w') as txtfile:
+
+    txtfile.write(results)
