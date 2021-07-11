@@ -6,8 +6,6 @@ import csv
 csvpath = os.path.join('Resources', 'election_data.csv')
 
 # Create some lists
-voterid = []
-County = []
 Candidate = []
 #Reading using CSV module
 
@@ -20,46 +18,37 @@ with open(csvpath) as csvfile:
 
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+#   print(f"CSV Header: {csv_header}")
 #   Need to have a list of candidate values
     first_row = next(csvreader)
     
     for row in csvreader:
             Candidate.append(row[2])
-    
-    Total_Votes=len(Candidate)
-    
-    print(Total_Votes)
 
 from collections import Counter
 l = Candidate
 mycount=Counter(l)
-print(mycount)
 
 MaxVoteCount = max(mycount, key=mycount.get)
-print(MaxVoteCount)
+#print(MaxVoteCount)
 
 s=sum(mycount.values())
-print(s)
 for k, v in mycount.items():
     pct = v * 100.0 / s
-    print(k, pct)
-#   * The percentage of votes each candidate won
-# I need to find a way to take each individual candidate and count up how many times their name appears on the list and divide that by Total_VOtes
-# How do I do this for each candidate, list comprehension? sum if? how do i cycle through each individual candidate??
-
-#   * The total number of votes each candidate won
+    counter_results = f"{k}: {pct}% ({v} votes)"
+    print(counter_results)
 
 
-# results = (f"Election Results\n"
-#     f"---------------------\n"
-#     f"Total Votes: {Total_Votes} \n"
-#     f"---------------------\n"
-#     f"Print each person that got vote sin a list with percentage and total number\n"
-#     f"---------------------\n"
-#     f"Winner: MaxVoteCount\n")
-   
-# print(results)
+results = (f"Election Results\n"
+f"---------------------\n"
+f"Total Votes: {s} \n"
+f"---------------------\n"
+f"{counter_results}\n"
+f"---------------------\n"
+f"Winner: {MaxVoteCount}\n") 
+
+print(results)
+# print([counter_results for k,v in mycount.items()])
 
  # Specify the file to write to
 #output_path = os.path.join("Resources", "pollresults.txt")
