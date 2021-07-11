@@ -7,7 +7,7 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 
 # Create some lists
 Candidate = []
-
+Candidate_Deets = []
 #Reading using CSV module
 with open(csvpath) as csvfile:
 
@@ -38,21 +38,29 @@ MaxVoteCount = max(mycount, key=mycount.get)
 s=sum(mycount.values())
 
 #print the stuff to the terminal
-print(f"Election Results\n"
+topline=(f"Election Results\n"
 f"---------------------\n"
 f"Total Vote Count: {s}\n"
 f"---------------------")
+print(topline)
 for k, v in mycount.items():
     pct = v * 100.0 / s
     counter_results = f"{k}: {pct}% ({v} votes)"
     print(counter_results)
-print(f"---------------------\n"
+bottomline=(f"---------------------\n"
 f"Winner: {MaxVoteCount}\n")
+print(bottomline)
 
- # Specify the file to write to
-#output_path = os.path.join("Resources", "pollresults.txt")
+# Specify the file to write to
+output_path = os.path.join("Analysis", "pollresults.txt")
 
 # Open the file using "write" mode. Specify the variable to hold the contents
-#with open(output_path, 'w') as txtfile:
-
- #   txtfile.write(results)      
+with open(output_path, 'w') as txtfile:
+     txtfile.writelines(topline)
+with open(output_path, 'a') as txtfile:
+    for k, v in mycount.items():
+        pct = v * 100.0 / s
+        counter_results = f"{k}: {pct}% ({v} votes)"
+    txtfile.writelines(counter_results)
+with open(output_path, 'a') as txtfile:
+    txtfile.writelines(bottomline)
