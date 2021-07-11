@@ -7,13 +7,15 @@ import csv
 
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
+#setting up some lists to eitehr fill or reference
 months_count = 0
 total_value = 0
 change_list = []
 month_change = []
 greatest_increase = []
 greatest_decrease = []
-# Method 2: Improved Reading using CSV module
+
+#Reading using CSV module
 
 with open(csvpath) as csvfile:
 
@@ -24,7 +26,7 @@ with open(csvpath) as csvfile:
 
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
     first_row = next(csvreader)
     first_value = int(first_row[1])
     months_count+=1
@@ -47,13 +49,19 @@ with open(csvpath) as csvfile:
     min_increase = min(change_list)
 
     index_change = (change_list.index(max_increase))
-    print(month_change[index_change])
+    min_index_change = (change_list.index(min_increase))
+    average = (change_list)/len(change_list)
+    # print(month_change[min_index_change])
+    # print(f"Greatest Change {month_change[index_change]} - {max_increase}")
 
 
     # print(max_increase)
     results = (f"Financial Analysis\n"
     f"---------------------\n"
-    f"Total Months in file: {months_count}\n")
+    f"Total Months in file: {months_count}\n"
+    f"Total Change in file: {total_value}\n"
+    f"Average Change in file: {average} \n"
+    f"Greatest Increase in Profits {month_change[index_change]}: {max_increase}\n"
+    f"Greatest Descrease in Profits {month_change[min_index_change]}: {min_increase} ")
     
     print(results)
-    #print(f"Total Change in file: {total_value}")
