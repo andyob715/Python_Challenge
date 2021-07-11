@@ -31,6 +31,19 @@ with open(csvpath) as csvfile:
     
     print(Total_Votes)
 
+from collections import Counter
+l = Candidate
+mycount=Counter(l)
+print(mycount)
+
+MaxVoteCount = max(mycount, key=mycount.get)
+print(MaxVoteCount)
+
+s=sum(mycount.values())
+print(s)
+for k, v in mycount.items():
+    pct = v * 100.0 / s
+    print(k, pct)
 #   * The percentage of votes each candidate won
 # I need to find a way to take each individual candidate and count up how many times their name appears on the list and divide that by Total_VOtes
 # How do I do this for each candidate, list comprehension? sum if? how do i cycle through each individual candidate??
@@ -44,7 +57,7 @@ with open(csvpath) as csvfile:
 #     f"---------------------\n"
 #     f"Print each person that got vote sin a list with percentage and total number\n"
 #     f"---------------------\n"
-#     f"Total Votes: \n")
+#     f"Winner: MaxVoteCount\n")
    
 # print(results)
 
