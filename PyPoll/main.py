@@ -7,7 +7,6 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 
 # Create some lists
 Candidate = []
-Candidate_Deets = []
 #Reading using CSV module
 with open(csvpath) as csvfile:
 
@@ -54,7 +53,7 @@ print(bottomline)
 # Specify the file to write to
 output_path = os.path.join("Analysis", "pollresults.txt")
 
-# Open the file using "write" mode. Specify the variable to hold the contents
+# Open the file using "write" mode for first open, append to subsequent. Specify the variable to hold the contents
 with open(output_path, 'w') as txtfile:
      txtfile.writelines(topline)
 with open(output_path, 'a') as txtfile:
