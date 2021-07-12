@@ -41,7 +41,7 @@ s=sum(mycount.values())
 topline=(f"Election Results\n"
 f"---------------------\n"
 f"Total Vote Count: {s}\n"
-f"---------------------")
+f"---------------------\n")
 print(topline)
 for k, v in mycount.items():
     pct = v * 100.0 / s
@@ -60,7 +60,7 @@ with open(output_path, 'w') as txtfile:
 with open(output_path, 'a') as txtfile:
     for k, v in mycount.items():
         pct = v * 100.0 / s
-        counter_results = f"{k}: {pct}% ({v} votes)"
-    txtfile.writelines(counter_results)
+        counter_results = f"{k}: {pct}% ({v} votes)\n"
+        txtfile.writelines(counter_results)
 with open(output_path, 'a') as txtfile:
     txtfile.writelines(bottomline)

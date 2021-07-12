@@ -63,7 +63,7 @@ with open(csvpath) as csvfile:
     print(results)
 
  # Specify the file to write to
-output_path = os.path.join("Resources", "financialsummary.txt")
+output_path = os.path.join("Analysis", "financialsummary.txt")
 
 # Open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w') as txtfile:
